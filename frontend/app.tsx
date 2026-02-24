@@ -4,6 +4,7 @@ import Home from "./routes/Home";
 import Index from "./routes/Index";
 import Thread from "./routes/Thread";
 import Settings from "./routes/Settings";
+import NotFound from "./routes/Notfound";
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
           <Route path=":id" element={<Thread />} />
         </Route>
         <Route path="settings" element={<Settings />} />
-        <Route path="*" element={<p> Not found </p>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,7 +5,7 @@ import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { streamText, smoothStream } from "ai";
 import { headers } from "next/headers";
 import { getModelConfig, AIModel } from "@/lib/models";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const maxDuration = 60;
 

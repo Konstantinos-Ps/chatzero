@@ -1,9 +1,9 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText } from "ai";
 import { headers } from "next/headers";
-import { NextResponse, NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
   const headersList = await headers();
   const googleApiKey = headersList.get("X-Google-API-Key");
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     apiKey: googleApiKey,
   });
 
-  const { prompt, isTitle, messageId, threadId } = await req.json();
+  const { prompt, isTitle, messageId, threadId } = await request.json();
 
   try {
     const { text: title } = await generateText({

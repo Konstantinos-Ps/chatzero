@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getSEOTags, renderSchemaTags } from "@/lib/seo";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "katex/dist/katex.min.css";
@@ -15,10 +15,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "ChatZero",
-  description: "Fastest AI Chat App",
-};
+export const metadata = getSEOTags({
+  keywords: [
+    "chatgpt",
+    "deepseek",
+    "openrouter",
+    "openrouter api key",
+    "chat zero",
+    "ai chat",
+    "google api key",
+    "google",
+    "openai api key",
+    "get your api keys ready",
+  ],
+  canonicalUrlRelative: "/",
+});
 
 export default function RootLayout({
   children,
@@ -27,6 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>{renderSchemaTags()}</head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

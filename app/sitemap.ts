@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { config } from "@/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://chatzero-one.vercel.app";
+  const baseUrl = `https://${config.domainName}`;
   return [
     {
       url: baseUrl,

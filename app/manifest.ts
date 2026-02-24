@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
+import { config } from "@/config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Chatzero",
-    short_name: "Chatzero",
-    description: "Chatzero, a chat application built with Next.js",
+    name: config.appName,
+    short_name: config.appName,
+    description: config.appDescription,
     start_url: "/",
     display: "standalone",
     background_color: "#171717",

@@ -32,14 +32,14 @@ To run ChatZero locally, you'll need to follow these steps:
    ```
 
 2. **Install dependencies:**
-   We use `bun` for package management.
+   We use `pnpm` for package management.
    ```bash
-   bun install
+   pnpm install
    ```
 
 3. **Run the development server:**
    ```bash
-   bun dev
+   pnpm dev
    ```
 
 4. **Open your browser:**
