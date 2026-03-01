@@ -1,4 +1,5 @@
 import { getSEOTags, renderSchemaTags } from "@/lib/seo";
+import { config } from "@/config";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/LayoutClient";
@@ -14,6 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = getSEOTags({
+  title: `Blazingly-Fast, Open-source, and Free AI Chat App | ${config.appName}`,
+  description:
+    "Open Source\nPrivacy first (all data stored locally in your browser)\nBring your own API keys (we don't store them)\nChat Navigator - Easily Navigate to any message in the chat\nMulti-model support - Google Gemini, OpenAI, DeepSeek and more will be added soon\nOptimized React codebase (No Unnecessary re-renders)",
   keywords: [
     "chatgpt",
     "deepseek",
