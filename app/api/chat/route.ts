@@ -6,12 +6,40 @@ import { streamText, smoothStream } from "ai";
 import { headers } from "next/headers";
 import { getModelConfig, AIModel } from "@/lib/models";
 import { type NextRequest, NextResponse } from "next/server";
+import * as zod from "zod";
+
+const chatSchema = zod.object({
+  messages: zod.array(
+    zod.object({
+      role: zod.enum(["user", "assistant"]),
+      content: zod.string(),
+    }),
+  ),
+  model: zod.enum(["google", "openai", "openrouter"]),
+});
 
 export const maxDuration = 60;
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const { messages, model } = await req.json();
+    const body = await request.json();
+
+    const validationResult = chatSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      return new NextResponse(
+        JSON.stringify({
+          error: "Invalid request body",
+          details: validationResult.error.format(),
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    const { messages, model } = validationResult.data;
     const headersList = await headers();
 
     const modelConfig = getModelConfig(model as AIModel);
